@@ -31,7 +31,6 @@
     "parcel": "^2.0.0-nightly.746"
   },
   "dependencies": {
-    "handlebars": "^4.7.7",
-    "normalize-scss": "^7.0.1"
+    "handlebars": "^4.7.7"
   }
 }
