@@ -30,6 +30,10 @@ export class Templator {
       }
     }
 
+    _createHTML = (element, compiledString) => {
+      const root = document.getElementById(element)
+    }
+
     return tmpl
   }
 }
