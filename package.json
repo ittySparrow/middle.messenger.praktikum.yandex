@@ -2,10 +2,9 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "simple messenger",
-  "main": "index.js",
   "scripts": {
     "dev": "./node_modules/.bin/parcel index.html",
-    "build": "./node_modules/.bin/parcel build ./src/index.js",
+    "build": "./node_modules/.bin/parcel build index.html",
     "start": "node server.js"
   },
   "repository": {
