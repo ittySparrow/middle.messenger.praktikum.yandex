@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ittySparrow/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-nightly.748",
     "express": "^4.17.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -30,6 +31,7 @@
     "parcel": "^2.0.0-nightly.746"
   },
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "normalize-scss": "^7.0.1"
   }
 }
