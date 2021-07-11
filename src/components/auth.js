@@ -13,9 +13,11 @@ export const auth = () => {
     button: {
       register: {
         text: 'Зарегистрироваться',
+        onClick: authRedirect,
       },
       auth: {
         text: 'Войти',
+        onClick: registerRedirect,
       },
     },
     label: {
