@@ -1,10 +1,4 @@
-import { Templator } from '../classes/Templator'
-import { authPage } from '../layout/authPage'
-
 export const auth = () => {
-  const tmpl = new Templator(authPage())
-  console.log('INITIALIZED')
-
   const data = {
     title: {
       register: 'Регистрация',
@@ -13,11 +7,11 @@ export const auth = () => {
     button: {
       register: {
         text: 'Зарегистрироваться',
-        onClick: authRedirect,
+        onClick: 'authRedirect',
       },
       auth: {
         text: 'Войти',
-        onClick: registerRedirect,
+        onClick: 'registerRedirect',
       },
     },
     label: {
@@ -36,6 +30,4 @@ export const auth = () => {
       },
     },
   }
-
-  const renderedTemplate = tmpl.compile(data, '.root')
 }

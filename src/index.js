@@ -1,7 +1,2 @@
-import { auth } from './components/auth'
-
-export const init = () => {
-  auth()
-}
-
-window.onload = init
+let source = document.getElementById("root").innerHTML;
+let template = Handlebars.compile(source);

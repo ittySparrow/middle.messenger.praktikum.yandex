@@ -1,0 +1,22 @@
+<div class="auth-page _wrapper">
+  <form class="form">
+    <div class="form__header">
+      <div class="form__title">{{ title.auth }}</div>
+      <button class="form__redirect">{{ title.register }}</button>
+    </div>
+
+    <div class="form__input-group">
+      <div class="form__input-wrapper">
+        <label for="name">{{ label.auth.login }}</label>
+        <input type="text" class="form__input" id="name" />
+      </div>
+
+      <div class="form__input-wrapper">
+        <label for="password">{{ label.auth.password }}</label>
+        <input type="password" class="form__input" id="password" />
+      </div>
+    </div>
+
+    <button type="submit">{{ button.auth.text }}</button>
+  </form>
+</div>
