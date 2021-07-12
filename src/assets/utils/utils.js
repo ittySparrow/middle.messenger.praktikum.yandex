@@ -1,5 +1,4 @@
-export const getObjValue = (obj, path) => {
-  const defaultValue = false
+export const getObjValue = (obj, path, defaultValue = false) => {
   const keys = path.split('.')
 
   let result = obj

@@ -1,11 +1,7 @@
-import auth from './assets/modules/auth/auth'
-import profilePage from './assets/modules/profile/profile'
-import errorPage from './assets/modules/error/error'
+import auth from './assets/modules/auth/auth';
 
 export const init = () => {
-  auth()
-  // profilePage()
-  // errorPage()
-}
+  auth();
+};
 
-window.onload = init
+window.onload = init;

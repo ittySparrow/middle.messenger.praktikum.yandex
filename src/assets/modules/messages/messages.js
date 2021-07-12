@@ -1,17 +1,17 @@
-import Templator from '../../utils/Templator'
-import { messagesTemplate } from './messages.tmpl'
-import profile from '../profile/profile'
+import Templator from '../../utils/Templator';
+import { messagesTemplate } from './messages.tmpl';
+import profile from '../profile/profile';
 
 export default () => {
-  const template = messagesTemplate()
+  const template = messagesTemplate();
 
   window.openProfile = () => {
-    profile()
-  }
+    profile();
+  };
 
   const data = {
-    openProfile: window.openProfile,
-  }
+    openProfile,
+  };
 
-  const tmpl = new Templator(template).compile(data, '.root')
-}
+  const tmpl = new Templator(template).compile(data, '.root');
+};

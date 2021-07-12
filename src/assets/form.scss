@@ -35,7 +35,7 @@
       height: 0;
       border: 400px solid transparent;
       border-top: 0;
-      border-bottom: 600px solid $background-base;
+      border-bottom: 600px solid $background-color;
       transform: rotate(15deg);
       z-index: -3;
     }
@@ -52,7 +52,7 @@
     width: fit-content;
 
     &:hover {
-      color: $hover;
+      color: $hover-color;
     }
 
     &._register {
@@ -81,10 +81,6 @@
     width: 100%;
     margin-bottom: 16px;
     font-size: 10px;
-
-    &::placeholder {
-      text-transform: uppercase;
-    }
   }
 
   & .btn {
@@ -95,6 +91,22 @@
   &._register {
     #{$block}__nav-title {
       margin-bottom: 32px;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    font-size: 12px;
+    top: 6px;
+    left: 0;
+    opacity: 0.5;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: text;
+
+    &._focused {
+      transform: translateY(-16px);
+      font-size: 8px;
     }
   }
 }

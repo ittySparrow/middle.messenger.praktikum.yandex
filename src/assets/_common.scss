@@ -8,7 +8,7 @@
 
   &._profile {
     height: 100vh;
-    background-color: $background-second;
+    background-color: $background-color;
   }
 }
 
@@ -17,18 +17,18 @@
   height: 40px;
   color: white;
   font-weight: 600;
-  background-color: $background-second;
-  border: 1px solid $hover;
+  background-color: $background-color;
+  border: 1px solid $hover-color;
   border-radius: 4px;
   cursor: pointer;
   filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.25));
 
   &:hover {
-    background-color: $hover;
+    background-color: $hover-color;
   }
 
   &:active {
-    background-color: $background-base;
+    background-color: $background-color;
     filter: none;
   }
 }

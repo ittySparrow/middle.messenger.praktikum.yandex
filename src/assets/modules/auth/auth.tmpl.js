@@ -1,25 +1,27 @@
 export const authTemplate = () => {
   return `
     <div class="container">
-      <form class="form _auth">
+      <form class="form _auth js-form">
         <nav class="form__nav">
-          <div class="form__nav-btn _register" onclick="{{openRegisterPage}}">{{ register }}</div>
+          <div class="form__nav-btn _register" onclick="{{ openRegisterPage }}">{{ register }}</div>
           <div class="form__nav-title">{{ auth }}</div>
         </nav>
 
         <div class="form__input-group">
 
           <div class="form__input-wrapper">
-            <input type="text" class="form__input" placeholder="{{ label.login }}">
+            <label for="login" class="form__label">{{ label.login }}</label>
+            <input type="text" id="login" class="form__input" >
           </div>
 
           <div class="form__input-wrapper">
-            <input type="password" class="form__input" placeholder="{{ label.password }}">
+            <label for="password" class="form__label">{{ label.password }}</label>
+            <input type="password" id="password" class="form__input" >
           </div>
 
         </div>
-        <button type="button" class="btn" onclick="{{openChats}}">{{ button }}</button>
+        <button type="submit" class="btn" onclick="{{ openChats }}">{{ button }}</button>
       </form>
     </div>
-  `
-}
+  `;
+};

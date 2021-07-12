@@ -1,19 +1,20 @@
-import Templator from '../../utils/Templator'
-import { registerTemplate } from './register.tmpl'
-import auth from '../auth/auth'
+import Templator from '../../utils/Templator';
+import { registerTemplate } from './register.tmpl';
+import auth from '../auth/auth';
+import form from '../../utils/form';
 
 export default () => {
-  const template = registerTemplate()
+  const template = registerTemplate();
 
   window.openAuthPage = () => {
-    auth()
-  }
+    auth();
+  };
 
   const data = {
     register: 'Регистрация',
     auth: 'Вход',
     button: 'Зарегистрироваться',
-    openAuthPage: window.openAuthPage,
+    openAuthPage,
     label: {
       login: 'Логин',
       first_name: 'Имя',
@@ -23,7 +24,8 @@ export default () => {
       password: 'Пароль',
       passConfirmation: 'Пароль (повторно)',
     },
-  }
+  };
 
-  const tmpl = new Templator(template).compile(data, '.root')
-}
+  const tmpl = new Templator(template).compile(data, '.root');
+  form();
+};

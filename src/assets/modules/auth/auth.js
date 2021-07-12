@@ -1,30 +1,32 @@
-import Templator from '../../utils/Templator'
-import { authTemplate } from './auth.tmpl'
-import register from '../register/register'
-import messages from '../messages/messages'
+import Templator from '../../utils/Templator';
+import { authTemplate } from './auth.tmpl';
+import register from '../register/register';
+import messages from '../messages/messages';
+import form from '../../utils/form';
 
 export default () => {
-  const template = authTemplate()
+  const template = authTemplate();
 
   window.openRegisterPage = () => {
-    register()
-  }
+    register();
+  };
 
   window.openChats = () => {
-    messages()
-  }
+    messages();
+  };
 
   const data = {
     register: 'Регистрация',
-    openRegisterPage: window.openRegisterPage,
     auth: 'Вход',
     label: {
       login: 'Логин',
       password: 'Пароль',
     },
     button: 'Войти',
-    openChats: window.openChats,
-  }
+    openRegisterPage,
+    openChats,
+  };
 
-  const tmpl = new Templator(template).compile(data, '.root')
-}
+  const tmpl = new Templator(template).compile(data, '.root');
+  form();
+};

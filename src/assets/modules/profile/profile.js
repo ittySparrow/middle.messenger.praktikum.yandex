@@ -1,36 +1,48 @@
-import Templator from '../../utils/Templator'
-import auth from '../auth/auth'
-import messages from '../messages/messages'
-import { profileTemplate } from './profile.tmpl'
+import Templator from '../../utils/Templator';
+import auth from '../auth/auth';
+import editProfile from './editProfile/editProfile';
+import messages from '../messages/messages';
+import { profileTemplate } from './profile.tmpl';
+import editPassword from './editPassword/editPassword';
 
 export default () => {
-  const template = profileTemplate()
+  const template = profileTemplate();
 
   window.openAuthPage = () => {
-    auth()
-  }
+    auth();
+  };
 
   window.openChats = () => {
-    messages()
-  }
+    messages();
+  };
+
+  window.openEditProfilePage = () => {
+    editProfile();
+  };
+
+  window.openEditPasswordPage = () => {
+    editPassword();
+  };
 
   const data = {
     back: 'К чатам',
     exit: 'Выйти',
-    openAuthPage: window.openAuthPage,
-    openChats: window.openChats,
-    avatar: '/',
+    openAuthPage,
+    openChats,
+    openEditProfilePage,
+    openEditPasswordPage,
+    avatar: 'https://bigpicture.ru/wp-content/uploads/2014/02/wetcats01.jpg',
     login: {
       label: 'Логин',
-      value: 'логи',
+      value: 'ТемныйВластелин',
     },
     first_name: {
       label: 'Имя',
-      value: 'The Doctor',
+      value: 'Сергей',
     },
     second_name: {
       label: 'Фамилия',
-      value: 'фамилия',
+      value: 'Пушкин',
     },
     display_name: {
       label: 'Имя в чате',
@@ -38,15 +50,15 @@ export default () => {
     },
     email: {
       label: 'E-mail',
-      value: 'почта',
+      value: 'spushkin@mail.ru',
     },
     phone: {
       label: 'Телефон',
-      value: '+7909090909',
+      value: '+79090909090',
     },
     changeProfile: 'Изменить профиль',
     changePassword: 'Изменить пароль',
-  }
+  };
 
-  const tmpl = new Templator(template).compile(data, '.root')
-}
+  const tmpl = new Templator(template).compile(data, '.root');
+};
