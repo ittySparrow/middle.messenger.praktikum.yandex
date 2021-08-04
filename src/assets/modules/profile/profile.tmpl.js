@@ -46,8 +46,8 @@ export const profileTemplate = () => {
           </dl>
           
           <div class="profile__edit-group">
-            <div class="profile__edit-item" onclick="{{ openEditProfilePage }}">{{ changeProfile }}</div>
-            <div class="profile__edit-item" onclick="{{ openEditPasswordPage }}">{{ changePassword }}</div>
+            <button class="profile__edit-item" onclick="{{ openEditProfilePage }}">{{ changeProfile }}</button>
+            <button class="profile__edit-item" onclick="{{ openEditPasswordPage }}">{{ changePassword }}</button>
           </div>
 
         </div>
