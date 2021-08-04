@@ -1,0 +1,112 @@
+.form {
+  $block: &;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding: 40px 30px;
+  width: 350px;
+  background-color: white;
+  border-radius: 8px;
+
+  &._auth {
+    &:before {
+      content: '';
+      position: absolute;
+      left: -200px;
+      top: 0;
+      width: 550px;
+      height: 500px;
+      transform: rotate(25deg);
+      background-color: #1e1c22;
+      z-index: -3;
+    }
+  }
+
+  &._register {
+    &:before {
+      content: '';
+      position: absolute;
+      left: -100px;
+      top: -110px;
+      width: 0;
+      height: 0;
+      border: 400px solid transparent;
+      border-top: 0;
+      border-bottom: 600px solid $background-color;
+      transform: rotate(15deg);
+      z-index: -3;
+    }
+  }
+
+  &__nav {
+    width: 100%;
+  }
+
+  &__nav-btn {
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 32px;
+    width: fit-content;
+
+    &:hover {
+      color: $hover-color;
+    }
+
+    &._register {
+      margin-left: auto;
+    }
+  }
+
+  &__nav-title {
+    margin-bottom: 60px;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__input-group {
+    width: 250px;
+  }
+
+  &__input-wrapper {
+    position: relative;
+  }
+
+  &__input {
+    height: 25px;
+    padding-left: 5px;
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 10px;
+  }
+
+  & .btn {
+    margin: 0 auto;
+    margin-top: 32px;
+  }
+
+  &._register {
+    #{$block}__nav-title {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    font-size: 12px;
+    top: 6px;
+    left: 0;
+    opacity: 0.5;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: text;
+
+    &._focused {
+      transform: translateY(-16px);
+      font-size: 8px;
+    }
+  }
+}
