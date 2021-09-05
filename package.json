@@ -23,6 +23,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0-nightly.748",
     "express": "^4.17.1",
-    "parcel": "^2.0.0-ni"
+    "parcel": "^2.0.0-ni",
+    "typescript": "^4.3.5"
   }
 }

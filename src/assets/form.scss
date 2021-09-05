@@ -48,12 +48,7 @@
   &__nav-btn {
     cursor: pointer;
     font-size: 16px;
-    margin-bottom: 32px;
     width: fit-content;
-
-    &:hover {
-      color: $hover-color;
-    }
 
     &._register {
       margin-left: auto;
