@@ -1,20 +1,20 @@
 @import './assets/variables';
 @import './assets/common';
 @import './assets/form.scss';
-@import './assets/modules/profile/profile.scss';
-@import './assets/modules/error/error.scss';
-@import './assets/modules/messages/messages.scss';
+@import './assets/pages/profile/profile.scss';
+@import './assets/pages/error/error.scss';
+@import './assets/pages/messages/messages.scss';
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  color: $base-color;
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	color: $base-color;
 }
 
 input {
-  outline: none;
-  border: none;
-  border-bottom: solid 1px black;
+	outline: none;
+	border: none;
+	border-bottom: solid 1px black;
 }

@@ -1,10 +1,13 @@
-const express = require('express');
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const express = require('express')
 
-app.use(express.static(`${__dirname}/dist`));
+const app = express()
+const PORT = process.env.PORT || 3000
+
+app.use(express.static(`${__dirname}/dist`))
 
 app.listen(PORT, function () {
-  console.log(`I'm on port ${PORT}!`);
-});
+	console.log(`I'm on port ${PORT}!`)
+})
