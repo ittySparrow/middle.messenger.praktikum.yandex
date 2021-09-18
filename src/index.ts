@@ -1,7 +1,7 @@
 import auth from './assets/pages/auth/auth'
 
 export const init = (): void => {
-  auth()
+	auth()
 }
 
 window.onload = init

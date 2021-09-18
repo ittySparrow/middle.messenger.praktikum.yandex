@@ -10,8 +10,9 @@ export const messagesTemplate: TTemplate = `
       <div class="messages__main">
         <div class="messages__users js-users"></div>
         <div class="messages__message-field">
-          <div class="messages__message-field-empty">{{ noUserMessage }}</div>
-        </div>
+			<div class="js-messages-field messages__messages-wrapper"></div>
+			<div class="js-messages-input messages__input-wrapper"></div>
+		</div>
       </div>
 
     </div>

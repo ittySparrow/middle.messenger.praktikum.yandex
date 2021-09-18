@@ -1,141 +1,159 @@
 import { EventBus } from './EventBus'
 
 type TMeta = {
-  tagName: string
-  className?: string
-  props: Object
+	tagName: string
+	className?: string
+	props: Record<string, unknown>
 }
 
 export default class Block {
-  _element: HTMLElement | null = null
-  _meta: TMeta | null = null
-  props: Object
-  eventBus: () => EventBus
+	_element: HTMLElement | null = null
+	_meta: TMeta | null = null
+	props: Record<string, unknown>
+	eventBus: () => EventBus
 
-  static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
-  }
+	static EVENTS = {
+		INIT: 'init',
+		FLOW_CDM: 'flow:component-did-mount',
+		FLOW_CDU: 'flow:component-did-update',
+		FLOW_RENDER: 'flow:render',
+	}
 
-  constructor(tagName: string = 'div', props: Object = {}, className?: string) {
-    const eventBus = new EventBus()
-    this._meta = {
-      tagName,
-      props,
-      className,
-    }
+	constructor(
+		tagName = 'div',
+		props: Record<string, unknown> = {},
+		className?: string
+	) {
+		const eventBus = new EventBus()
+		this._meta = {
+			tagName,
+			props,
+			className,
+		}
 
-    this.props = this._makePropsProxy(props)
+		this.props = this._makePropsProxy(props)
 
-    this.eventBus = () => eventBus
+		this.eventBus = () => eventBus
 
-    this._registerEvents(eventBus)
-    eventBus.emit(Block.EVENTS.INIT)
-  }
+		this._registerEvents(eventBus)
+		eventBus.emit(Block.EVENTS.INIT)
+	}
 
-  _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
-  }
+	_registerEvents(eventBus: EventBus): void {
+		eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
+		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
+		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
+		eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
+	}
 
-  _createResources(): void {
-    if (!this._meta) return
+	_createResources(): void {
+		if (!this._meta) return
 
-    const { tagName, className } = this._meta
-    this._element = this._createDocumentElement(tagName)
-    if (className) {
-      this._element.classList.add(className)
-    }
-  }
+		const { tagName, className } = this._meta
+		this._element = this._createDocumentElement(tagName)
+		if (className) {
+			this._element.classList.add(className)
+		}
+	}
 
-  init(): void {
-    this._createResources()
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM)
-  }
+	init(): void {
+		this._createResources()
+		this.eventBus().emit(Block.EVENTS.FLOW_CDM)
+	}
 
-  _componentDidMount(): void {
-    this.componentDidMount()
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
-  }
+	_componentDidMount(): void {
+		this.componentDidMount()
+		this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+	}
 
-  componentDidMount(oldProps?: Object): any {}
+	componentDidMount(): void {
+		//
+	}
 
-  _componentDidUpdate(oldProps: Object, newProps: Object) {
-    const response = this.componentDidUpdate(oldProps, newProps)
-    if (!response) {
-      return
-    }
-    this._render()
-  }
+	_componentDidUpdate(
+		oldProps: Record<string, unknown>,
+		newProps: Record<string, unknown>
+	): void {
+		const response = this.componentDidUpdate(oldProps, newProps)
+		if (!response) {
+			return
+		}
+		this._render()
+	}
 
-  componentDidUpdate(oldProps: Object, newProps: Object) {
-    return true
-  }
+	componentDidUpdate(
+		oldProps: Record<string, unknown>,
+		newProps: Record<string, unknown>
+	): boolean {
+		return (JSON.stringify(oldProps) !== JSON.stringify(newProps))
+	}
 
-  setProps = (nextProps?: Object) => {
-    if (!nextProps) {
-      return
-    }
+	setProps = (nextProps?: Record<string, unknown>): void => {
+		if (!nextProps) {
+			return
+		}
 
-    Object.assign(this.props, nextProps)
-  }
+		Object.assign(this.props, nextProps)
+	}
 
-  get element() {
-    return this._element
-  }
+	get element(): HTMLElement | null {
+		return this._element
+	}
 
-  _render() {
-    const block = this.render()
+	_render(): void {
+		const block = this.render()
 
-    if (!this._element) return
-    this._element.innerHTML = block
-  }
+		if (!this._element) return
+		this._element.innerHTML = block
+	}
 
-  render(): any {}
+	render(): string {
+		return ''
+	}
 
-  getContent(): HTMLElement | null {
-    return this.element
-  }
+	getContent(): HTMLElement | null {
+		return this.element
+	}
 
-  _makePropsProxy(props: Object) {
-    const self = this
+	_makePropsProxy(
+		props: Record<string | symbol, unknown>
+	): Record<string | symbol, unknown> {
+		return new Proxy(props, {
+			get(target, prop) {
+				const value = typeof prop === 'symbol' ? target.prop : target[prop]
+				return typeof value === 'function' ? value.bind(target) : value
+			},
+			set: (target, prop, val) => {
+				typeof prop === 'symbol' ? target.prop = val: target[prop] =val
 
-    return new Proxy(props, {
-      get(target, prop) {
-        const value = target[prop]
-        return typeof value === 'function' ? value.bind(target) : value
-      },
-      set(target, prop, val) {
-        target[prop] = val
+				this.eventBus().emit(
+					Block.EVENTS.FLOW_CDU,
+					{ ...target },
+					target
+				)
+				return true
+			},
+			deleteProperty() {
+				throw new Error('Нет доступа')
+			},
+		})
+	}
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target)
-        return true
-      },
-      deleteProperty() {
-        throw new Error('Нет доступа')
-      },
-    })
-  }
+	_createDocumentElement(tagName: string): HTMLElement {
+		return document.createElement(tagName)
+	}
 
-  _createDocumentElement(tagName: string): HTMLElement {
-    return document.createElement(tagName)
-  }
+	show(): void {
+		const content = this.getContent()
 
-  show() {
-    const content = this.getContent()
+		if (!content) return
+		content.style.display = 'block'
+	}
 
-    if (!content) return
-    content.style.display = 'block'
-  }
+	hide(): void {
+		const content = this.getContent()
 
-  hide() {
-    const content = this.getContent()
-
-    if (!content) return
-    content.style.display = 'none'
-  }
+		if (!content) return
+		content.style.display = 'none'
+	}
 }

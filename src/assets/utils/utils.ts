@@ -1,18 +1,18 @@
 export const getObjValue = (
-  obj: Object,
-  path: string,
-  defaultValue: boolean = false
-): any => {
-  const keys = path.split('.')
+	obj: Record<string, unknown>,
+	path: string,
+	defaultValue = false
+): unknown => {
+	const keys = path.split('.')
 
-  let result = obj
-  for (let key of keys) {
-    result = result[key]
+	let result: any = obj
+	for (const key of keys) {
+		result = result[key]
 
-    if (result === undefined) {
-      return defaultValue
-    }
-  }
+		if (result === undefined) {
+			return defaultValue
+		}
+	}
 
-  return result ?? defaultValue
+	return result ?? defaultValue
 }

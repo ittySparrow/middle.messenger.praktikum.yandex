@@ -2,35 +2,35 @@ import Block from '../../utils/Block'
 import Templator from '../../utils/Templator'
 
 export type TBtnProps = {
-  el: string
-  child: string
-  type: string
-  className: string
-  onClick: (e?: Event) => any
+	el: string
+	child: string
+	type: string
+	className: string
+	onClick: (e?: Event) => void
 }
 
-const tmpl = `{{ child }}`
+const tmpl = '{{ child }}'
 
 export default class Button extends Block {
-  props: TBtnProps
+	props: TBtnProps
 
-  constructor(props: TBtnProps) {
-    super('button', props, props.className)
-  }
+	constructor(props: TBtnProps) {
+		super('button', props, props.className)
+	}
 
-  render() {
-    return new Templator(tmpl).compile(this.props)
-  }
+	render(): string {
+		return new Templator(tmpl).compile(this.props)
+	}
 
-  apply(el: string, type: string) {
-    const element = this.getContent()
-    const root = document.querySelector(el)
+	apply(el: string, type: string): void {
+		const element = this.getContent()
+		const root = document.querySelector(el)
 
-    if (!element || !root) return
+		if (!element || !root) return
 
-    element.setAttribute('type', type)
+		element.setAttribute('type', type)
 
-    element.addEventListener('click', this.props.onClick)
-    root.appendChild(element)
-  }
+		element.addEventListener('click', this.props.onClick)
+		root.appendChild(element)
+	}
 }

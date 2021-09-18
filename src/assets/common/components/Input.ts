@@ -2,13 +2,13 @@ import Block from '../../utils/Block'
 import Templator from '../../utils/Templator'
 
 export type TInputProps = {
-  el: string
-  id: string
-  name: string
-  value: string
-  type: String
-  labelClassName: string
-  inputClassName: string
+	el: string
+	id: string
+	name: string
+	value: string
+	type: string
+	labelClassName: string
+	inputClassName: string
 }
 
 const tmpl = `
@@ -17,22 +17,22 @@ const tmpl = `
 `
 
 export default class Input extends Block {
-  props: TInputProps
+	props: TInputProps
 
-  constructor(props: TInputProps, className: string) {
-    super('div', props, className)
-  }
+	constructor(props: TInputProps, className: string) {
+		super('div', props, className)
+	}
 
-  render() {
-    return new Templator(tmpl).compile(this.props)
-  }
+	render(): string {
+		return new Templator(tmpl).compile(this.props)
+	}
 
-  apply(el: string) {
-    const element = this.getContent()
-    const root = document.querySelector(el)
+	apply(el: string): void {
+		const element = this.getContent()
+		const root = document.querySelector(el)
 
-    if (!element || !root) return
+		if (!element || !root) return
 
-    root.appendChild(element)
-  }
+		root.appendChild(element)
+	}
 }

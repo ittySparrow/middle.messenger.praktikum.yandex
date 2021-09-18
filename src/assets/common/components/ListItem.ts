@@ -2,11 +2,11 @@ import Block from '../../utils/Block'
 import Templator from '../../utils/Templator'
 
 export type TListItemProps = {
-  id: string
-  label: string
-  value: string
-  labelClassName: string
-  valueClassName: string
+	id: string
+	label: string
+	value: string
+	labelClassName: string
+	valueClassName: string
 }
 
 const tmpl = `
@@ -15,20 +15,20 @@ const tmpl = `
   `
 
 export default class ListItem extends Block {
-  constructor(props: TListItemProps) {
-    super('div', props, 'profile__list-items')
-  }
+	constructor(props: TListItemProps) {
+		super('div', props, 'profile__list-items')
+	}
 
-  render() {
-    return new Templator(tmpl).compile(this.props)
-  }
+	render(): string {
+		return new Templator(tmpl).compile(this.props)
+	}
 
-  apply(el: string) {
-    const root = document.querySelector(el)
-    const element = this.getContent()
+	apply(el: string): void {
+		const root = document.querySelector(el)
+		const element = this.getContent()
 
-    if (!element || !root) return
+		if (!element || !root) return
 
-    root.appendChild(element)
-  }
+		root.appendChild(element)
+	}
 }
